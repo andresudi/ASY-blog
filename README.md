@@ -1,2 +1,2 @@
-# ASY-blog
+# lugo-blog
 portofolio blog SPA
