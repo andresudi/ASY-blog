@@ -13,17 +13,6 @@ const {
 const isLogin = require('../middlewares/isLogin')
 const images = require('../helpers/image.js')
 
-router.get('/', getArticle)
-router.post('/', isLogin, createArticle)
-router.put('/:id', isLogin, editArticle)
-router.delete('/:id', isLogin, deleteArticle)
-
-router.get('/myarticle', isLogin,getMyArticle)
-router.get('/:id', isLogin, getOneArticle)
-
-router.put('/comment/:id', isLogin,addComment)
-router.put('/comment/:id/delete', isLogin,deleteComment)
-
 router.post('/upload',
   images.multer.single('image'), 
   images.sendUploadToGCS,
@@ -35,5 +24,17 @@ router.post('/upload',
     })
   }
 )
+
+router.get('/', getArticle)
+router.post('/', isLogin, createArticle)
+router.put('/:id', isLogin, editArticle)
+router.delete('/:id', isLogin, deleteArticle)
+
+router.get('/myarticle', isLogin, getMyArticle)
+router.get('/:id', getOneArticle)
+
+router.put('/comment/:id', isLogin, addComment)
+router.put('/comment/:id/delete', isLogin, deleteComment)
+
 
 module.exports = router

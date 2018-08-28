@@ -3,7 +3,7 @@ const User = require('../models/user')
 
 var isLogin = (req, res, next) => {
     let token = req.headers.token
-    let decode = jwt.verify(token, process.env.JWT_SECRET_KEY)
+    let decode = jwt.verify(token, process.env.jwt_secret)
     if(token){
         User.findOne({email: decode.email})
         .then((data) => {

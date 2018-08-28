@@ -1,44 +1,38 @@
 <template>
-        <v-layout>
-    <v-flex xs12 sm6 offset-sm3>
-        <v-card>
-            <v-card-media src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" height="200px"></v-card-media>
-            <v-card-title primary-title>
-                <div>
-                    <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-                    <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
-                </div>
-            </v-card-title>
-    
-            <v-card-actions>
-                <v-btn flat color="orange">Share</v-btn>
-                <v-btn flat color="orange">Explore</v-btn>
-            </v-card-actions>
-        </v-card>
-        <v-card>
-            <v-card-media src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" height="200px"></v-card-media>
-            <v-card-title primary-title>
-                <div>
-                    <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-                    <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
-                </div>
-            </v-card-title>
-    
-            <v-card-actions>
-                <v-btn flat color="orange">Share</v-btn>
-                <v-btn flat color="orange">Explore</v-btn>
-            </v-card-actions>
-        </v-card>
-    </v-flex>
+    <div class="container">
+        <v-layout align-start justify-start row fill-height wrap>
+            <v-layout xs12 sm6 v-for="(data,i) in article" v-bind:key="i">
+                <v-card>
+                    <v-card-media v-bind:src="data.image" height="200px"></v-card-media>
+                    <v-card-title primary-title>
+                        <div>
+                            <h3 style="text-align: center;"> {{ data.title }} </h3>
+                            <hr>
+                            <div> <span>Created by {{ data.UserId.username }} on {{ data.createdAt.slice(0,10) }}</span></div>
+                        </div>
+                    </v-card-title>
+                    <v-btn flat color="white" :to="`/article/detail/${data._id}`">
+                        See Article
+                    </v-btn>
+                </v-card>
+            </v-layout>
         </v-layout>
+    </div>
 </template>
 
 <script>
     export default {
+        props: ['article'],
+        data: function() {
+            return {
     
+            }
+        },
     }
 </script>
 
-<style>
-    
+<style scoped>
+    .v-btn {
+        background-color: green
+    }
 </style>

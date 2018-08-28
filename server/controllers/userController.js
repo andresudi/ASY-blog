@@ -61,7 +61,7 @@ const register = (req,res) => {
     const { username, email, password } = req.body
     if (password == undefined || password.length == 0) {
         res.status(200).json({
-            message: `password is required`
+            message: `Password is required`
         })
     } 
     User.create({
@@ -72,7 +72,7 @@ const register = (req,res) => {
     .then((data) => {
         if (data) {
             res.status(201).json({
-                message: `User successfully registered!`,
+                message: `Successfully registered!`,
                 data
             })
         } else {
@@ -99,6 +99,7 @@ const login = (req, res) => {
             if (passwordCheck) {
                 let token = jwt.sign({
                     id: data._id,
+                    name: data.username,
                     email: data.email
                 }, process.env.jwt_secret)
                 res.status(200).json({

@@ -21,13 +21,14 @@
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="blue darken-1" flat v-on:click="addArticle">Save</v-btn>
+                    <v-btn color="blue darken-1" flat v-on:click="cancel">Cancel</v-btn>
                 </v-card-actions>
             </v-card>
         </v-layout>
     </div>
 </template>
 
-<script>
+<script scoped>
     import axios from 'axios'
     import swal from 'sweetalert'
     export default {
@@ -43,7 +44,7 @@
                 formdata.append('image', this.image)
                 axios.post('http://localhost:3000/articles/upload', formdata)
                     .then((result) => {
-                        console.log(result);
+                        console.log(result.data.link);
                         axios({
                                 method: 'post',
                                 url: 'http://localhost:3000/articles',
@@ -57,12 +58,11 @@
                                 }
                             })
                             .then((result) => {
-                                console.log(result);
-                                swal(result.data.message)
-    
+                                swal(result.data.message, '', 'success')
+                                this.$router.push('/')
                             })
                             .catch((err) => {
-    
+                                console.log(err)
                             });
                     })
                     .catch((err) => {
@@ -72,7 +72,10 @@
     
             getImage(image) {
                 this.image = image.target.files[0]
-                console.log(this.image);
+    
+            },
+            cancel() {
+                this.$router.push('/')
             }
         }
     }

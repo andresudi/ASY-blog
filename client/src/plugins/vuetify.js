@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import VueMoment from 'vue-moment'
+import moment from 'moment-timezone'
+ 
+Vue.use(VueMoment, {
+    moment,
+})
 
 Vue.use(Vuetify, {
   theme: {
@@ -13,3 +19,5 @@ Vue.use(Vuetify, {
     warning: '#FFC107'
   },
 })
+
+

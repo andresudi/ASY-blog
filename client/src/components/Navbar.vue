@@ -6,7 +6,7 @@
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-xs-only">
             <v-btn flat to='/'>Home</v-btn>
-            <v-btn flat to='/article' v-if="checkLogin">My Article</v-btn>
+            <v-btn flat to='/article/myarticle' v-if="checkLogin">My Article</v-btn>
             <v-btn flat to='/article/create' v-if="checkLogin">Create Article</v-btn>
             <v-btn flat to='/signup' v-if="!checkLogin">Sign Up</v-btn>
             <v-btn flat to='/signin' v-if="!checkLogin">Sign In</v-btn>

@@ -1,10 +1,11 @@
 <template>
-    <v-container grid-list-md text-xs-center class="kotak">
+<div class="container">
+        <v-container grid-list-md text-xs-center class="kotak">
         <v-layout row wrap>
             <v-flex>
                 <h1>Register Form</h1>
                 <v-form ref="form" lazy-validation>
-                    <v-text-field :rules="nameRules" v-model="name" label="name" required></v-text-field>
+                    <v-text-field :rules="nameRules" v-model="username" label="name" required></v-text-field>
                     <v-text-field :rules="emailRules" v-model="email" label="Email" required></v-text-field>
                     <v-text-field :rules="passwordRules" v-model="password" type="password" label="Password" required></v-text-field>
                     <v-btn v-on:click="register">Register</v-btn>
@@ -12,22 +13,24 @@
             </v-flex>
         </v-layout>
     </v-container>
+</div>
+
 </template>
 
 <script>
-    import router from '@/router.js'
     import axios from 'axios'
     import swal from 'sweetalert'
     export default {
         data: function() {
             return {
-                name: '',
+                username: '',
                 nameRules: [
                     v => !!v || 'Name is required',
                 ],
                 password: '',
                 passwordRules: [
                     v => !!v || 'Password is required',
+                    v => v.length >= 6 || 'Password must be greater than 6 characters'
                 ],
                 email: '',
                 emailRules: [
@@ -49,8 +52,8 @@
                         }
                     })
                     .then((result) => {
-                        swal(result.data.message)
-                    
+                        swal(result.data.message, '', 'success')
+                        this.$router.push('/')
                     })
                     .catch((err) => {
                         swal(err.message)

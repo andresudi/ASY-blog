@@ -6,11 +6,12 @@ require('dotenv').config()
 const createArticle = (req, res) => {
     let decoded = jwt.verify(req.headers.token, process.env.jwt_secret)
     console.log(decoded)
+    console.log(req.body.image)
     Article.create({
         title: req.body.title,
         description: req.body.description,
         UserId: decoded.id,
-        image: image
+        image: req.body.image
     })
     .then((data) => {
         res.status(201).json({
@@ -59,9 +60,9 @@ const getOneArticle = (req, res) =>{
 
 const getMyArticle = (req, res) => {
     let token = req.headers.token
-    let decoded = jwt.verify(token, process.env.JWT_SECRET)
+    let decoded = jwt.verify(token, process.env.jwt_secret)
     Article.find({
-        userId: decoded.id
+        UserId: decoded.id
     }).populate('UserId')
         .then((data) => {
             res.status(201).json({
@@ -111,9 +112,12 @@ const deleteArticle = (req, res) => {
 }
 
 const addComment = (req, res) => {
+    console.log(req.body);
+    console.log(req.headers.token);
+    
     const { comment } = req.body
     let token = req.headers.token
-    let decoded = jwt.verify(token, process.env.JWT_SECRET)
+    let decoded = jwt.verify(token, process.env.jwt_secret)
     Article.update({
         _id: req.params.id
     }, {

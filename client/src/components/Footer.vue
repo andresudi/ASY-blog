@@ -3,7 +3,7 @@
         <v-footer dark height="auto">
             <v-card class="flex">
                 <v-card-title class="footer">
-                    <strong class="subheading">Get connected with us on social networks!</strong>
+                    <strong class="subheading" style="color: white;">Get connected with us on social networks!</strong>
                     <v-spacer></v-spacer>
                     <v-btn v-for="icon in icons" :key="icon.icon">
                         <v-icon class="icon" style="color: red;" size="24px">{{ icon }}</v-icon>
@@ -34,7 +34,7 @@
 
 <style>
     .footer {
-        background-color: orange;
+        background-color: #293D52;
         color: #293D52;
     }
     

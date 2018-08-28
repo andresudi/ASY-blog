@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+
 import CreateArticle from '@/components/Article/CreateArticle'
-import Article from '@/components/Article/Article'
-import Profile from '@/components/User/Profile'
+import MyArticle from '@/components/Article/MyArticle'
+import EditArticle from '@/components/Article/EditArticle'
+import FullArticle from '@/components/Article/FullArticle'
+
 import Signin from '@/components/User/Signin'
 import Signup from '@/components/User/Signup'
 
@@ -15,20 +18,24 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    },
-    {
-      path: '/article',
+      path: '/article/',
       name: 'Article',
-      component: Article
+      component: () => import('./views/Article.vue'),
+      children: [
+        {
+          path: '/article/myarticle',
+          name: 'MyArticle',
+          component: MyArticle
+        },
+        {
+          path: '/article/edit/:id',
+          name: 'EditArticle',
+          component: EditArticle
+        },
+      ]
     },
     {
       path: '/article/create',
@@ -36,9 +43,14 @@ export default new Router({
       component: CreateArticle
     },
     {
-      path: '/profile',
-      name: 'Profile',
-      component: Profile 
+      path: '/article/edit/:id',
+      name: 'EditArticle',
+      component: EditArticle
+    },
+    {
+      path: '/article/detail/:id',
+      name: 'FullArticle',
+      component: FullArticle
     },
     {
       path: '/signup',

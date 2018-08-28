@@ -14,31 +14,44 @@
     </v-jumbotron>
     <br>
     <br>
-    <Article></Article>
-    <Footer></Footer>
+    <Article :article="data"></Article>
+    <router-view></router-view>
+    <!-- <Footer></Footer> -->
   </div>
 </template>
 
 <script>
   // @ is an alias to /src
   import Carousel from '@/components/Carousel'
-  import Navbar from '@/components/Navbar'
-  import Footer from '@/components/Footer'
   import Article from '@/components/Article/Article.vue'
-  
+  import axios from 'axios'
+  // import Footer from '@/components/Footer'
+
   export default {
     name: 'home',
     components: {
-      Navbar,
       Carousel,
-      Footer,
       Article
     },
+  
     data() {
       return {
         data: []
       }
     },
+  
+    mounted() {
+      axios({
+          method: 'get',
+          url: 'http://localhost:3000/articles',
+        })
+        .then((response) => {
+          this.data = response.data.data
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 </script>
 
