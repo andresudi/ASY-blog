@@ -8,8 +8,8 @@ const {
   login
 } = require('../controllers/userController')
 
-router.get('/', getAllUser)
-router.get('/:id', getOneUser)
+router.get('/', getOneUser)
+// router.get('/:id', getOneUser)
 router.post('/register', register)
 router.post('/login', login)
 router.delete('/:id', deleteUser)

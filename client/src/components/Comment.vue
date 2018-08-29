@@ -2,7 +2,7 @@
     <div class="container">
         <v-layout>
             <v-flex xs12 sm6 offset-sm1>
-                <v-card v-for="(data,i) in comments" v-bind:key="i">
+                <v-card v-for="(data,i) in this.comments" v-bind:key="i">
                     <v-card-title primary-title>
                         <div class="hihi">
                             <h2 style="text-align: center;"> {{ data.name }} </h2>
@@ -15,7 +15,7 @@
     
                     <v-card-actions>
                         <div class="huhu">
-                            <v-btn v-if="user_login == data.name || user_login == postedBy" @click="deleteComment(data._id)">Delete</v-btn>
+                            <v-btn v-if="user_login == data.UserId || user_login == postedBy" @click="deleteComment(data._id)">Delete</v-btn>
                         </div>
                     </v-card-actions>
                 </v-card>
@@ -27,6 +27,7 @@
 <script>
     import axios from 'axios'
     import swal from 'sweetalert'
+    import jwt from 'jsonwebtoken'
     
     export default {
         data() {
@@ -34,7 +35,7 @@
                 comments: [],
                 postedBy: '',
                 cek_login: localStorage.getItem('token'),
-                user_login: ''
+                user_login: '',
             }
         },
     
@@ -48,6 +49,8 @@
                         }
                     })
                     .then((result) => {
+                        console.log(result);
+                        
                         this.comments = result.data.data.comments
                         this.postedBy = result.data.data.UserId.username
                     })
@@ -77,15 +80,21 @@
             },
     
             getMe() {
+                let token = localStorage.getItem('token')
+                let decode = jwt.verify(token, 'blogblogblog')
+                console.log(decode.id);
+                
                 axios({
                         method: 'get',
-                        url: `http://35.240.201.255/users`,
+                        url: `http://35.240.201.255/users/${decode.id}`,
                         headers: {
                             token: localStorage.getItem('token')
                         }
                     })
                     .then((result) => {
-                        this.user_login = result.data.data.name
+                        this.user_login = result.data.data._id
+                        console.log('ahui ',result.data.data._id);
+                        
                     })
                     .catch((err) => {
                         swal(err.message)
@@ -96,6 +105,8 @@
         mounted() {
             this.getArticles()
             this.getMe()
+            this
+            
         }
     }
 </script>

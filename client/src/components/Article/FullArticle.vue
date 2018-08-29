@@ -54,8 +54,8 @@
                     user: '',
                     date: '',
                     image: '',
-                    comment: ''
                 },
+                comment: '',
                 cek_login: localStorage.getItem('token')
             }
         },
