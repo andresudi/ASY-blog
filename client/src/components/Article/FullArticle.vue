@@ -19,7 +19,7 @@
                     <br>
                     <div class="container" style="width: 1000px; background-color: white; color: black;" v-if="cek_login">
                         <v-textarea rows="3" cols="5" v-model="comment" placeholder="Please type here"></v-textarea>
-                        <v-btn @click="addComment">Post</v-btn>
+                        <v-btn @click="addComment">Comment</v-btn>
                     </div>
                     <div v-if="!cek_login">
                         <h3>Please Login First!</h3>
