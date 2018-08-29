@@ -39,7 +39,7 @@
         mounted() {
             axios({
                     method: 'get',
-                    url: 'http://localhost:3000/articles/myarticle',
+                    url: 'http://35.240.201.255/articles/myarticle',
                     headers: {
                         token: this.token
                     }
@@ -57,7 +57,7 @@
             deleteArticle(data) {
                 axios({
                         method: 'delete',
-                        url: `http://localhost:3000/articles/${data._id}`,
+                        url: `http://35.240.201.255/articles/${data._id}`,
                         headers: {
                             token: this.token
                         }

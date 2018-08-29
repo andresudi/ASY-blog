@@ -43,7 +43,7 @@
     mounted() {
       axios({
           method: 'get',
-          url: 'http://localhost:3000/articles',
+          url: 'http://35.240.201.255/articles',
         })
         .then((response) => {
           this.data = response.data.data

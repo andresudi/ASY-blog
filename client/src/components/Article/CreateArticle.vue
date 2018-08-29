@@ -42,12 +42,12 @@
             addArticle: function() {
                 let formdata = new FormData()
                 formdata.append('image', this.image)
-                axios.post('http://localhost:3000/articles/upload', formdata)
+                axios.post('http://35.240.201.255/articles/upload', formdata)
                     .then((result) => {
                         console.log(result.data.link);
                         axios({
                                 method: 'post',
-                                url: 'http://localhost:3000/articles',
+                                url: 'http://35.240.201.255/articles',
                                 headers: {
                                     token: localStorage.getItem('token')
                                 },

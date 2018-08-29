@@ -44,7 +44,7 @@
             register: function() {
                 axios({
                         method: 'post',
-                        url: 'http://localhost:3000/users/register',
+                        url: 'http://35.240.201.255/users/register',
                         data: {
                             username: this.username,
                             email: this.email,

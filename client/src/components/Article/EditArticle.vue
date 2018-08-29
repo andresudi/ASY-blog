@@ -41,7 +41,7 @@
             editArticle() {
                 axios({
                         method: 'put',
-                        url: `http://localhost:3000/articles/${this.$route.params.id}`,
+                        url: `http://35.240.201.255/articles/${this.$route.params.id}`,
                         headers: {
                             token: localStorage.getItem('token')
                         },
@@ -62,7 +62,7 @@
         created() {
             axios({
                     method: 'get',
-                    url: `http://localhost:3000/articles/${this.$route.params.id}`,
+                    url: `http://35.240.201.255/articles/${this.$route.params.id}`,
                     headers: {
                         token: localStorage.getItem('token')
                     }

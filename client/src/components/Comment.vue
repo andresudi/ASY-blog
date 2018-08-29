@@ -42,7 +42,7 @@
             getArticles() {
                 axios({
                         method: 'get',
-                        url: `http://localhost:3000/articles/${this.$route.params.id}`,
+                        url: `http://35.240.201.255/articles/${this.$route.params.id}`,
                         headers: {
                             token: localStorage.getItem('token')
                         }
@@ -59,7 +59,7 @@
             deleteComment(id_comment) {
                 axios({
                         method: 'put',
-                        url: `http://localhost:3000/articles/comment/${this.$route.params.id}/delete`,
+                        url: `http://35.240.201.255/articles/comment/${this.$route.params.id}/delete`,
                         headers: {
                             token: localStorage.getItem('token')
                         },
@@ -79,7 +79,7 @@
             getMe() {
                 axios({
                         method: 'get',
-                        url: `http://localhost:3000/users`,
+                        url: `http://35.240.201.255/users`,
                         headers: {
                             token: localStorage.getItem('token')
                         }

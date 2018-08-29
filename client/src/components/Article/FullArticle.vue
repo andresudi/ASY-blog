@@ -64,7 +64,7 @@
             addComment() {
                 axios({
                         method: 'put',
-                        url: `http://localhost:3000/articles/comment/${this.$route.params.id}`,
+                        url: `http://35.240.201.255/articles/comment/${this.$route.params.id}`,
                         headers: {
                             token: localStorage.getItem('token')
                         },
@@ -86,7 +86,7 @@
             let id = this.$route.params.id
             axios({
                     method: 'get',
-                    url: `http://localhost:3000/articles/${id}`,
+                    url: `http://35.240.201.255/articles/${id}`,
                 })
                 .then((result) => {
                     console.log(result.data);
