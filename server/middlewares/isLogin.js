@@ -5,12 +5,12 @@ var isLogin = (req, res, next) => {
     let token = req.headers.token
     let decode = jwt.verify(token, process.env.jwt_secret)
     if(token){
-        User.findOne({email: decode.email})
+        User.findOne({email: decode.email}) r
         .then((data) => {
             if(data){
                 next()
             }else{
-                res.status(400).json({
+                res.status(201).json({
                     message: 'User is not Authenticated'
                 })
             }
@@ -21,7 +21,7 @@ var isLogin = (req, res, next) => {
         });
         
     }else{
-        res.status(400).json({
+        res.status(200).json({
             msg: `no token`
         })
     }
